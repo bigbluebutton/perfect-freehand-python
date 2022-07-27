@@ -8,4 +8,4 @@ originally written by Steve Ruiz in TypeScript. Please reference the
 documentation for that library for additional usage examples, links to
 other implementations, and to support the original author.
 
-Please read the online documentation: https://bigbluebutton.github.io/perfect-freehand-python/
+Please read the online documentation: https://docs.bigbluebutton.org/perfect-freehand-python/
