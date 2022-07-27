@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Development &amp; Contributions &#8212; perfect-freehand-python 1.0.17 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tips &amp; Tricks" href="tips.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="development-contributions">
+<h1>Development &amp; Contributions<a class="headerlink" href="#development-contributions" title="Permalink to this heading">¶</a></h1>
+<p>Development of perfect-freehand-python takes place on Github:
+<a class="reference external" href="https://github.com/bigbluebutton/perfect-freehand-python">bigbluebutton/perfect-freehand-python</a>.</p>
+<p>This Python port of the
+<a class="reference external" href="https://github.com/steveruizok/perfect-freehand">perfect-freehand</a> library
+is maintained by the <a class="reference external" href="https://bigbluebutton.org/">BigBlueButton</a> project.
+Like the original TypeScript version, the code is made available under the
+<a class="reference external" href="https://spdx.org/licenses/MIT.html">MIT license</a>.</p>
+<p>Pull requests are welcome! It’s important for the code in this repository to
+be kept in sync with the TypeScript
+<a class="reference external" href="https://github.com/steveruizok/perfect-freehand">perfect-freehand</a> library,
+so if you have any functionality changes that you would like to propose, please
+send them to the upstream library first for discussion.</p>
+<section id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this heading">¶</a></h2>
+<p>Start by cloning the perfect-freehand-python git repository:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/bigbluebutton/perfect-freehand-python.git
+<span class="nb">cd</span> perfect-freehand-python
+</pre></div>
+</div>
+<p>Rather than installing the development dependencies into your global
+environment, I recommend using
+<a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a>. Set up a venv and
+install the dependencies by running the following commands:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python -m venv .venv
+<span class="nb">source</span> .venv/bin/activate
+pip install -r requirements-dev.txt
+</pre></div>
+</div>
+<p>Every time you’d like to work on the project, you need to run
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.venv/bin/activate</span></code> after changing to the project directory.</p>
+</section>
+<section id="common-development-tasks">
+<h2>Common Development Tasks<a class="headerlink" href="#common-development-tasks" title="Permalink to this heading">¶</a></h2>
+<section id="automatic-formatting">
+<h3>Automatic Formatting<a class="headerlink" href="#automatic-formatting" title="Permalink to this heading">¶</a></h3>
+<p>Run <a class="reference external" href="https://github.com/psf/black">black</a> with the following command to
+apply automatic formatting:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>black src tests
+</pre></div>
+</div>
+<p>You might also be interested in
+<a class="reference external" href="https://black.readthedocs.io/en/stable/integrations/editors.html">integrating black with your editor</a>.</p>
+</section>
+<section id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this heading">¶</a></h3>
+<p>Because of the structure of the code in the repository, you must set the
+<code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> environment variable to run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> against the uninstalled
+(development) code. Use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>src pytest
+</pre></div>
+</div>
+</section>
+<section id="static-type-checking">
+<h3>Static Type-checking<a class="headerlink" href="#static-type-checking" title="Permalink to this heading">¶</a></h3>
+<p>This project includes static type hints. These can be checked using
+<a class="reference external" href="http://mypy-lang.org/">mypy</a>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mypy src tests
+</pre></div>
+</div>
+</section>
+<section id="building-documentation">
+<h3>Building documentation<a class="headerlink" href="#building-documentation" title="Permalink to this heading">¶</a></h3>
+<p>The HTML documentation (what you are reading right now!) can be built by
+running the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sphinx-build docs build/html
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">perfect-freehand-python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips &amp; Tricks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Development &amp; Contributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-development-tasks">Common Development Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-formatting">Automatic Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-type-checking">Static Type-checking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-documentation">Building documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tips.html" title="previous chapter">Tips &amp; Tricks</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Calvin Walton, Steve Ruiz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/contrib.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

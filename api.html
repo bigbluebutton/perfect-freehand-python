@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>API Reference &#8212; perfect-freehand-python 1.0.17 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tips &amp; Tricks" href="tips.html" />
+    <link rel="prev" title="Usage" href="usage.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading">¶</a></h1>
+<section id="module-perfect_freehand">
+<span id="perfect-freehand-draw-perfect-pressure-sensitive-freehand-lines"></span><h2><a class="reference internal" href="#module-perfect_freehand" title="perfect_freehand"><code class="xref py py-mod docutils literal notranslate"><span class="pre">perfect_freehand</span></code></a> – Draw perfect pressure-sensitive freehand lines<a class="headerlink" href="#module-perfect_freehand" title="Permalink to this heading">¶</a></h2>
+<p>Draw perfect pressure-sensitive freehand lines.</p>
+<p>For most use cases, the <a class="reference internal" href="#perfect_freehand.get_stroke" title="perfect_freehand.get_stroke"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke()</span></code></a> function is the only thing you will
+need. It transforms the input points from the device to a polygon representing
+the stroke which can be drawn.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="perfect_freehand.get_stroke">
+<span class="sig-prename descclassname"><span class="pre">perfect_freehand.</span></span><span class="sig-name descname"><span class="pre">get_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_freehand.get_stroke" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an array of points describing a polygon that surrounds the input points.</p>
+<p>Internally, this calls <a class="reference internal" href="#perfect_freehand.get_stroke_points" title="perfect_freehand.get_stroke_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_points()</span></code></a> to pre-process the points
+(normalizing, smoothing, adding extra metadata) then
+<a class="reference internal" href="#perfect_freehand.get_stroke_outline_points" title="perfect_freehand.get_stroke_outline_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_outline_points()</span></code></a> to transform the points to an outline of
+the drawn stroke.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>] | <a class="reference internal" href="#perfect_freehand.types.InputPoint" title="perfect_freehand.types.InputPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputPoint</span></code></a>]) – <p>An array of points, as a iterable <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">pressure)</span></code> or a
+dict <code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:</span> <span class="pre">x,</span> <span class="pre">&quot;y&quot;:</span> <span class="pre">y,</span> <span class="pre">&quot;pressure&quot;:</span> <span class="pre">p}</span></code>.</p>
+<p>Pressure is optional in both cases.</p>
+</p></li>
+<li><p><strong>kwargs</strong> – See the documentation for the
+<a class="reference internal" href="#perfect_freehand.get_stroke_points" title="perfect_freehand.get_stroke_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_points()</span></code></a> and <a class="reference internal" href="#perfect_freehand.get_stroke_outline_points" title="perfect_freehand.get_stroke_outline_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_outline_points()</span></code></a>
+functions for descriptions of the keyword arguments. Any keyword
+arguments available on those functions can be used here, and will be
+passed through to the underlying functions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>) that
+represent an outline of the drawn stroke.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="perfect_freehand.get_stroke_points">
+<span class="sig-prename descclassname"><span class="pre">perfect_freehand.</span></span><span class="sig-name descname"><span class="pre">get_stroke_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">streamline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_freehand.get_stroke_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sequence of stroke points with an adjusted point, pressure,
+vector, distance, and running length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>] | <a class="reference internal" href="#perfect_freehand.types.InputPoint" title="perfect_freehand.types.InputPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputPoint</span></code></a>]) – <p>An array of points, as a iterable <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">pressure)</span></code> or a
+dict <code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:</span> <span class="pre">x,</span> <span class="pre">&quot;y&quot;:</span> <span class="pre">y,</span> <span class="pre">&quot;pressure&quot;:</span> <span class="pre">p}</span></code>.</p>
+<p>Pressure is optional in both cases.</p>
+</p></li>
+<li><p><strong>size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The base size (diameter) of the stroke.</p></li>
+<li><p><strong>streamline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Adjust the interpolation level between points.</p></li>
+<li><p><strong>last</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to handle the points as a completed stroke.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrokePoint</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A sequence of <a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.StrokePoint</span></code></a> objects.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">last</span></code> property is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the line’s end will be drawn at
+the last input point, rather than slightly behind it.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="perfect_freehand.get_stroke_outline_points">
+<span class="sig-prename descclassname"><span class="pre">perfect_freehand.</span></span><span class="sig-name descname"><span class="pre">get_stroke_outline_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=16.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thinning=0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothing=0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">easing=&lt;function</span> <span class="pre">default_easing&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulate_pressure=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cap_start=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_start=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_start_ease=&lt;function</span> <span class="pre">default_taper_start_ease&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cap_end=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_end=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_end_ease=&lt;function</span> <span class="pre">default_taper_end_ease&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_freehand.get_stroke_outline_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an array of points (as <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>) representing the outline of a stroke.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrokePoint</span></code></a>]) – An array of <a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.StrokePoint</span></code></a> as returned from
+<a class="reference internal" href="#perfect_freehand.get_stroke_points" title="perfect_freehand.get_stroke_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_points()</span></code></a>.</p></li>
+<li><p><strong>size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The base size (diameter) of the stroke.</p></li>
+<li><p><strong>thinning</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The effect of pressure on the stroke’s size.</p></li>
+<li><p><strong>smoothing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – How much to soften the stroke’s edges.</p></li>
+<li><p><strong>easing</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – An easing function to apply to each point’s pressure.</p></li>
+<li><p><strong>simulate_pressure</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to simulate pressure based on velocity.</p></li>
+<li><p><strong>last</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to handle the points as a completed stroke.</p></li>
+<li><p><strong>cap_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to draw a round cap at the start of the line.
+This parameter has no effect if <code class="docutils literal notranslate"><span class="pre">taper_start</span></code> is non-zero.</p></li>
+<li><p><strong>taper_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The distance to apply the start taper. If set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, the taper will be the total length of the stroke.</p></li>
+<li><p><strong>taper_start_ease</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – An easing function for the start taper. Default is
+based on a quadratic curve.</p></li>
+<li><p><strong>cap_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to draw a round cap at the end of the line. This
+parameter has no effect if <code class="docutils literal notranslate"><span class="pre">taper_end</span></code> is non-zero.</p></li>
+<li><p><strong>taper_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The distance to apply the end taper. If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+the taper will be the total length of the stroke.</p></li>
+<li><p><strong>taper_end_ease</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – An easing function for the end taper. Default is
+based on a cubic curve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>)
+that represent an outline of the drawn stroke.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-perfect_freehand.types">
+<span id="perfect-freehand-types-support-for-python-type-hints"></span><h2><a class="reference internal" href="#module-perfect_freehand.types" title="perfect_freehand.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">perfect_freehand.types</span></code></a> – Support for Python type hints<a class="headerlink" href="#module-perfect_freehand.types" title="Permalink to this heading">¶</a></h2>
+<p>Support types for Python type hints.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="perfect_freehand.types.InputPoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perfect_freehand.types.</span></span><span class="sig-name descname"><span class="pre">InputPoint</span></span><a class="headerlink" href="#perfect_freehand.types.InputPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>The structure of a point dict that can be used as input to
+<a class="reference internal" href="#perfect_freehand.get_stroke_points" title="perfect_freehand.get_stroke_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_points()</span></code></a></p>
+<p>This <code class="docutils literal notranslate"><span class="pre">TypedDict</span></code> class is only used for typechecking; you can use an
+ordinary <code class="docutils literal notranslate"><span class="pre">dict</span></code> with the keys described here.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.InputPoint.pressure">
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>The stylus pressure associated with the point. Optional.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.InputPoint.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>The x coordinate of the point.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.InputPoint.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>The y coordinate of the point.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perfect_freehand.types.</span></span><span class="sig-name descname"><span class="pre">StrokePoint</span></span><a class="headerlink" href="#perfect_freehand.types.StrokePoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>The structure of a point dict that is the output from
+<a class="reference internal" href="#perfect_freehand.get_stroke_points" title="perfect_freehand.get_stroke_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_stroke_points()</span></code></a></p>
+<p>This <code class="docutils literal notranslate"><span class="pre">TypedDict</span></code> class is only used for typechecking; the returned
+points are accessed in the same way as a normal dict.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The linear distance from the previous point to this point.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.point">
+<span class="sig-name descname"><span class="pre">point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.point" title="Permalink to this definition">¶</a></dt>
+<dd><p>The x/y position of the point.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.pressure">
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.pressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>The stylus pressure associated with the point, or synthesized.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.running_length">
+<span class="sig-name descname"><span class="pre">running_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.running_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sum of all distances up to this point.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.vector">
+<span class="sig-name descname"><span class="pre">vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motion vector from the previous point to this point.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">perfect-freehand-python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-perfect_freehand"><code class="xref py py-mod docutils literal notranslate"><span class="pre">perfect_freehand</span></code> – Draw perfect pressure-sensitive freehand lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-perfect_freehand.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">perfect_freehand.types</span></code> – Support for Python type hints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips &amp; Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib.html">Development &amp; Contributions</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="usage.html" title="previous chapter">Usage</a></li>
+      <li>Next: <a href="tips.html" title="next chapter">Tips &amp; Tricks</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Calvin Walton, Steve Ruiz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
