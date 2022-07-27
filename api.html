@@ -53,7 +53,7 @@ the drawn stroke.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>] | <a class="reference internal" href="#perfect_freehand.types.InputPoint" title="perfect_freehand.types.InputPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputPoint</span></code></a>]) – <p>An array of points, as a iterable <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">pressure)</span></code> or a
+<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <a class="reference internal" href="#perfect_freehand.types.InputPoint" title="perfect_freehand.types.InputPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputPoint</span></code></a>]]) – <p>An array of points, as a iterable <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">pressure)</span></code> or a
 dict <code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:</span> <span class="pre">x,</span> <span class="pre">&quot;y&quot;:</span> <span class="pre">y,</span> <span class="pre">&quot;pressure&quot;:</span> <span class="pre">p}</span></code>.</p>
 <p>Pressure is optional in both cases.</p>
 </p></li>
@@ -65,7 +65,7 @@ passed through to the underlying functions.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>) that
@@ -82,7 +82,7 @@ vector, distance, and running length.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>] | <a class="reference internal" href="#perfect_freehand.types.InputPoint" title="perfect_freehand.types.InputPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputPoint</span></code></a>]) – <p>An array of points, as a iterable <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">pressure)</span></code> or a
+<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <a class="reference internal" href="#perfect_freehand.types.InputPoint" title="perfect_freehand.types.InputPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputPoint</span></code></a>]]) – <p>An array of points, as a iterable <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">pressure)</span></code> or a
 dict <code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;:</span> <span class="pre">x,</span> <span class="pre">&quot;y&quot;:</span> <span class="pre">y,</span> <span class="pre">&quot;pressure&quot;:</span> <span class="pre">p}</span></code>.</p>
 <p>Pressure is optional in both cases.</p>
 </p></li>
@@ -122,20 +122,20 @@ the last input point, rather than slightly behind it.</p>
 <li><p><strong>last</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to handle the points as a completed stroke.</p></li>
 <li><p><strong>cap_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to draw a round cap at the start of the line.
 This parameter has no effect if <code class="docutils literal notranslate"><span class="pre">taper_start</span></code> is non-zero.</p></li>
-<li><p><strong>taper_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The distance to apply the start taper. If set to
+<li><p><strong>taper_start</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The distance to apply the start taper. If set to
 <code class="docutils literal notranslate"><span class="pre">True</span></code>, the taper will be the total length of the stroke.</p></li>
 <li><p><strong>taper_start_ease</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – An easing function for the start taper. Default is
 based on a quadratic curve.</p></li>
 <li><p><strong>cap_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to draw a round cap at the end of the line. This
 parameter has no effect if <code class="docutils literal notranslate"><span class="pre">taper_end</span></code> is non-zero.</p></li>
-<li><p><strong>taper_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The distance to apply the end taper. If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+<li><p><strong>taper_end</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The distance to apply the end taper. If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>,
 the taper will be the total length of the stroke.</p></li>
 <li><p><strong>taper_end_ease</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – An easing function for the end taper. Default is
 based on a cubic curve.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>)
