@@ -13,7 +13,7 @@ the stroke which can be drawn.
 __version__ = "1.0.17"
 
 from collections.abc import Callable, Sequence, MutableSequence
-from typing import Optional
+from typing import Optional, Union, Tuple, List
 from math import pi
 
 from . import vec
@@ -24,8 +24,8 @@ T = Sequence[float]
 
 
 def get_stroke(
-    points: Sequence[T | InputPoint], **kwargs
-) -> Sequence[tuple[float, float]]:
+    points: Sequence[Union[T, InputPoint]], **kwargs
+) -> Sequence[Tuple[float, float]]:
     """Get an array of points describing a polygon that surrounds the input points.
 
     Internally, this calls :func:`get_stroke_points` to pre-process the points
@@ -50,7 +50,7 @@ def get_stroke(
 
 
 def get_stroke_points(
-    points: Sequence[T | InputPoint],
+    points: Sequence[Union[T, InputPoint]],
     *,
     size: float = 16.0,
     streamline: float = 0.5,
@@ -200,12 +200,12 @@ def get_stroke_outline_points(
     simulate_pressure: bool = True,
     last: bool = False,
     cap_start: bool = True,
-    taper_start: bool | float = False,
+    taper_start: Union[bool, float] = False,
     taper_start_ease: Callable[[float], float] = default_taper_start_ease,
     cap_end: bool = True,
-    taper_end: bool | float = False,
+    taper_end: Union[bool, float] = False,
     taper_end_ease: Callable[[float], float] = default_taper_end_ease,
-) -> Sequence[tuple[float, float]]:
+) -> Sequence[Tuple[float, float]]:
     """Get an array of points (as ``(x, y)``) representing the outline of a stroke.
 
     :param points: An array of :class:`types.StrokePoint` as returned from
@@ -254,8 +254,8 @@ def get_stroke_outline_points(
     min_distance = (size * smoothing) ** 2
 
     # Our collected left and right points
-    left_pts: MutableSequence[tuple[float, float]] = []
-    right_pts: MutableSequence[tuple[float, float]] = []
+    left_pts: MutableSequence[Tuple[float, float]] = []
+    right_pts: MutableSequence[Tuple[float, float]] = []
 
     # Previous pressure (start with average of first five pressures,
     # in order to prevent fat starts for every line. Drawn lines
@@ -423,8 +423,8 @@ def get_stroke_outline_points(
     else:
         last_point = vec.add(first_point, (1.0, 1.0))
 
-    start_cap: list[tuple[float, float]] = []
-    end_cap: list[tuple[float, float]] = []
+    start_cap: List[Tuple[float, float]] = []
+    end_cap: List[Tuple[float, float]] = []
 
     # Draw a dot for very short or completed strokes
     #
@@ -443,7 +443,7 @@ def get_stroke_outline_points(
                 vec.uni(vec.per(vec.sub(first_point, last_point))),
                 -first_radius,
             )
-            dot_pts: list[tuple[float, float]] = []
+            dot_pts: List[Tuple[float, float]] = []
             for i in range(1, 14):
                 t = i / 13.0
                 dot_pts.append(vec.rotAround(start, first_point, FIXED_PI * 2 * t))
