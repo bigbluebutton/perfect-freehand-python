@@ -1,0 +1,67 @@
+[
+    {
+      "distance": 0,
+      "point": [
+        10,
+        200
+      ],
+      "pressure": 0.25,
+      "running_length": 0,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "distance": 28.75,
+      "point": [
+        10,
+        171.25
+      ],
+      "pressure": 0.5,
+      "running_length": 28.75,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "distance": 40.96875,
+      "point": [
+        10,
+        130.28125
+      ],
+      "pressure": 0.5,
+      "running_length": 69.71875,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "distance": 46.161718750000006,
+      "point": [
+        10,
+        84.11953125
+      ],
+      "pressure": 0.5,
+      "running_length": 115.88046875,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "distance": 48.368730468749995,
+      "point": [
+        10,
+        35.75080078125
+      ],
+      "pressure": 0.5,
+      "running_length": 164.24919921875,
+      "vector": [
+        0,
+        1
+      ]
+    }
+]

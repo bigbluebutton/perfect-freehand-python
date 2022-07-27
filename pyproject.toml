@@ -1,3 +1,8 @@
 [build-system]
 requires = ["setuptools >= 42"]
 build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+markers = [
+    "input_json: Name of shape from inputs.json to use for test."
+]

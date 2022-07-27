@@ -1,0 +1,14 @@
+# Tests
+pytest
+PyYAML
+
+# Code formatting
+black
+
+# Type checking/linting
+mypy
+types-PyYAML
+
+# Documentation
+sphinx
+sphinx-autodoc-typehints
