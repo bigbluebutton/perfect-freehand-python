@@ -12,8 +12,7 @@ the stroke which can be drawn.
 
 __version__ = "1.0.17"
 
-from collections.abc import Sequence, MutableSequence
-from typing import Callable, Optional, Union, Tuple, List
+from typing import Callable, Optional, Union, Tuple, List, Sequence, MutableSequence
 from math import pi
 
 from . import vec
