@@ -3,7 +3,7 @@
 # Copyright (c) 2022 Calvin Walton
 # Copyright (c) 2021 Stephen Ruiz
 
-from collections.abc import Callable
+from typing import Callable
 
 
 def default_easing(t: float) -> float:
