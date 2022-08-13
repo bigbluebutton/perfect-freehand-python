@@ -12,7 +12,7 @@ the stroke which can be drawn.
 
 __version__ = "1.0.17"
 
-from typing import Callable, Optional, Union, Tuple, List, Sequence, MutableSequence
+from typing import Callable, Optional, Union, Tuple, List, Sequence
 from math import pi
 
 from . import vec
@@ -21,10 +21,38 @@ from .types import InputPoint, StrokePoint
 
 T = Sequence[float]
 
+# Browser strokes seem to be off if PI is regular, a tiny offset seems to fix it
+FIXED_PI = pi + 0.0001
+
+# This is the rate of change for simulated pressure. It could be an option.
+RATE_OF_PRESSURE_CHANGE = 0.275
+
+
+def default_taper_start_ease(t: float) -> float:
+    return t * (2 - t)
+
+
+def default_taper_end_ease(t: float) -> float:
+    return (t - 1) * (t - 1) * t
+
 
 def get_stroke(
-    points: Sequence[Union[T, InputPoint]], **kwargs
-) -> Sequence[Tuple[float, float]]:
+    points: Sequence[Union[T, InputPoint]],
+    *,
+    size: float = 16.0,
+    streamline: float = 0.5,
+    last: bool = False,
+    thinning: float = 0.5,
+    smoothing: float = 0.5,
+    easing: Callable[[float], float] = default_easing,
+    simulate_pressure: bool = True,
+    cap_start: bool = True,
+    taper_start: Union[bool, float] = False,
+    taper_start_ease: Callable[[float], float] = default_taper_start_ease,
+    cap_end: bool = True,
+    taper_end: Union[bool, float] = False,
+    taper_end_ease: Callable[[float], float] = default_taper_end_ease,
+) -> List[Tuple[float, float]]:
     """Get an array of points describing a polygon that surrounds the input points.
 
     Internally, this calls :func:`get_stroke_points` to pre-process the points
@@ -36,16 +64,46 @@ def get_stroke(
         dict ``{"x": x, "y": y, "pressure": p}``.
 
         Pressure is optional in both cases.
-    :param kwargs: See the documentation for the
-        :func:`get_stroke_points` and :func:`get_stroke_outline_points`
-        functions for descriptions of the keyword arguments. Any keyword
-        arguments available on those functions can be used here, and will be
-        passed through to the underlying functions.
+    :param size: The base size (diameter) of the stroke.
+    :param streamline: Adjust the interpolation level between points.
+    :param last: Whether to handle the points as a completed stroke.
+    :param thinning: The effect of pressure on the stroke's size.
+    :param smoothing: How much to soften the stroke's edges.
+    :param easing: An easing function to apply to each point's pressure.
+    :param simulate_pressure: Whether to simulate pressure based on velocity.
+    :param cap_start: Whether to draw a round cap at the start of the line.
+        This parameter has no effect if ``taper_start`` is non-zero.
+    :param taper_start: The distance to apply the start taper. If set to
+        ``True``, the taper will be the total length of the stroke.
+    :param taper_start_ease: An easing function for the start taper. Default is
+        based on a quadratic curve.
+    :param cap_end: Whether to draw a round cap at the end of the line. This
+        parameter has no effect if ``taper_end`` is non-zero.
+    :param taper_end: The distance to apply the end taper. If set to ``True``,
+        the taper will be the total length of the stroke.
+    :param taper_end_ease: An easing function for the end taper. Default is
+        based on a cubic curve.
+    :return: A sequence of points (each represented by a tuple of ``(x, y)``)
+        that represent an outline of the drawn stroke.
 
     :return: A sequence of points (each represented by a tuple of ``(x, y)``) that
         represent an outline of the drawn stroke.
     """
-    return get_stroke_outline_points(get_stroke_points(points, **kwargs), **kwargs)
+    return get_stroke_outline_points(
+        get_stroke_points(points, size=size, streamline=streamline, last=last),
+        size=size,
+        thinning=thinning,
+        smoothing=smoothing,
+        last=last,
+        easing=easing,
+        simulate_pressure=simulate_pressure,
+        cap_start=cap_start,
+        taper_start=taper_start,
+        taper_start_ease=taper_start_ease,
+        cap_end=cap_end,
+        taper_end=taper_end,
+        taper_end_ease=taper_end_ease,
+    )
 
 
 def get_stroke_points(
@@ -54,7 +112,7 @@ def get_stroke_points(
     size: float = 16.0,
     streamline: float = 0.5,
     last: bool = False,
-) -> Sequence[StrokePoint]:
+) -> List[StrokePoint]:
     """Returns a sequence of stroke points with an adjusted point, pressure,
     vector, distance, and running length.
 
@@ -80,7 +138,7 @@ def get_stroke_points(
     t: float = 0.15 + (1.0 - streamline) * 0.85
 
     # Convert the input to a list of tuples regardless of input type
-    pts: MutableSequence[T] = list(
+    pts: List[T] = list(
         point
         if isinstance(point, Sequence)
         else (point["x"], point["y"], point["pressure"])
@@ -102,7 +160,7 @@ def get_stroke_points(
 
     # The stroke_points array will hold the points for the stroke.
     # Start it out with the first point, which needs no adjustment.
-    stroke_points: MutableSequence[StrokePoint] = [
+    stroke_points: List[StrokePoint] = [
         StrokePoint(
             point=(pts[0][0], pts[0][1]),
             pressure=pts[0][2] if len(pts[0]) > 2 else 0.25,
@@ -174,21 +232,6 @@ def get_stroke_points(
     return stroke_points
 
 
-# Browser strokes seem to be off if PI is regular, a tiny offset seems to fix it
-FIXED_PI = pi + 0.0001
-
-# This is the rate of change for simulated pressure. It could be an option.
-RATE_OF_PRESSURE_CHANGE = 0.275
-
-
-def default_taper_start_ease(t: float) -> float:
-    return t * (2 - t)
-
-
-def default_taper_end_ease(t: float) -> float:
-    return (t - 1) * (t - 1) * t
-
-
 def get_stroke_outline_points(
     points: Sequence[StrokePoint],
     *,
@@ -204,7 +247,7 @@ def get_stroke_outline_points(
     cap_end: bool = True,
     taper_end: Union[bool, float] = False,
     taper_end_ease: Callable[[float], float] = default_taper_end_ease,
-) -> Sequence[Tuple[float, float]]:
+) -> List[Tuple[float, float]]:
     """Get an array of points (as ``(x, y)``) representing the outline of a stroke.
 
     :param points: An array of :class:`types.StrokePoint` as returned from
@@ -253,8 +296,8 @@ def get_stroke_outline_points(
     min_distance = (size * smoothing) ** 2
 
     # Our collected left and right points
-    left_pts: MutableSequence[Tuple[float, float]] = []
-    right_pts: MutableSequence[Tuple[float, float]] = []
+    left_pts: List[Tuple[float, float]] = []
+    right_pts: List[Tuple[float, float]] = []
 
     # Previous pressure (start with average of first five pressures,
     # in order to prevent fat starts for every line. Drawn lines
