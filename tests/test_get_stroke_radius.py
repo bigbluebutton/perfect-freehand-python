@@ -1,5 +1,6 @@
-from perfect_freehand.get_stroke_radius import get_stroke_radius
 from pytest import approx
+
+from perfect_freehand import get_stroke_radius
 
 
 def test_thinning_zero():

@@ -11,12 +11,12 @@ the stroke which can be drawn.
 """
 
 __version__ = "1.0.17"
+__all__ = ["get_stroke", "get_stroke_points", "get_stroke_outline_points"]
 
-from typing import Callable, Optional, Union, Tuple, List, Sequence
 from math import pi
+from typing import Callable, List, Optional, Sequence, Tuple, Union
 
 from . import vec
-from .get_stroke_radius import get_stroke_radius, default_easing
 from .types import InputPoint, StrokePoint
 
 T = Sequence[float]
@@ -28,12 +28,26 @@ FIXED_PI = pi + 0.0001
 RATE_OF_PRESSURE_CHANGE = 0.275
 
 
+def default_easing(t: float) -> float:
+    return t
+
+
 def default_taper_start_ease(t: float) -> float:
     return t * (2 - t)
 
 
 def default_taper_end_ease(t: float) -> float:
     return (t - 1) * (t - 1) * t
+
+
+def get_stroke_radius(
+    size: float,
+    thinning: float,
+    pressure: float,
+    easing: Callable[[float], float] = default_easing,
+) -> float:
+    """Compute a radius based on the pressure."""
+    return size * easing(0.5 - thinning * (0.5 - pressure))
 
 
 def get_stroke(

@@ -1,10 +1,11 @@
 import json
+from math import isfinite
 from typing import Sequence
 
-from perfect_freehand import get_stroke_points, get_stroke_outline_points
-from math import isfinite
 import pytest
 from pytest import approx
+
+from perfect_freehand import get_stroke_outline_points, get_stroke_points
 
 
 def compare_stroke_outline_points(

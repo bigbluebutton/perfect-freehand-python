@@ -1,5 +1,6 @@
-import pytest
 from pathlib import Path
+
+import pytest
 
 # Using yaml to load "json" documents so I can have things like trailing commas
 import yaml

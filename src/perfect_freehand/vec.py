@@ -3,8 +3,8 @@
 # Copyright (c) 2022 Calvin Walton
 # Copyright (c) 2021 Stephen Ruiz
 
-from typing import Sequence, Tuple
 from math import cos, hypot, sin
+from typing import Sequence, Tuple
 
 S = Sequence[float]
 V = Tuple[float, float]

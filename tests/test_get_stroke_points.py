@@ -1,9 +1,11 @@
-from typing import Sequence
-from perfect_freehand import get_stroke_points
-from perfect_freehand.types import StrokePoint
 from math import isfinite
+from typing import Sequence
+
 import pytest
 from pytest import approx
+
+from perfect_freehand import get_stroke_points
+from perfect_freehand.types import StrokePoint
 
 
 def compare_stroke_point(A: StrokePoint, B: StrokePoint):
