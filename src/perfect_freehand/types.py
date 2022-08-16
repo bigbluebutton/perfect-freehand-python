@@ -5,8 +5,7 @@
 
 """Support types for Python type hints."""
 
-from typing import TypedDict
-from typing import Tuple
+from typing import Tuple, TypedDict
 
 
 class InputPoint(TypedDict, total=False):
