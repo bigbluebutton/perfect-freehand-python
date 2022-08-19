@@ -1,3 +1,7 @@
+.. SPDX-FileCopyrightText: 2022 Calvin Walton
+   
+   SPDX-License-Identifier: MIT
+
 API Reference
 =============
 
