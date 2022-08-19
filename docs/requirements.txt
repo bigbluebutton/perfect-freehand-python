@@ -1,1 +1,6 @@
+# SPDX-FileCopyrightText: 2022 Calvin Walton
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# This requirements file is used by the CI documentation build system
 sphinx-autodoc-typehints

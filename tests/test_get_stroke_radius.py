@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2021 Stephen Ruiz Ltd
+# SPDX-FileCopyrightText: 2022 Calvin Walton
+#
+# SPDX-License-Identifier: MIT
+
 from pytest import approx
 
 from perfect_freehand import get_stroke_radius

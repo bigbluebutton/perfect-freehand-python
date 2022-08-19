@@ -1,7 +1,7 @@
-# MIT License
+# SPDX-FileCopyrightText: 2021 Stephen Ruiz Ltd
+# SPDX-FileCopyrightText: 2022 Calvin Walton
 #
-# Copyright (c) 2022 Calvin Walton
-# Copyright (c) 2021 Stephen Ruiz
+# SPDX-License-Identifier: MIT
 
 """Support types for Python type hints."""
 

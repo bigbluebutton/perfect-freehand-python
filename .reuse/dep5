@@ -1,0 +1,17 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: perfect-freehand-python
+Upstream-Contact: Calvin Walton <calvin.walton@kepstin.ca>
+Source: https://github.com/bigbluebutton/perfect-freehand-python
+
+Files: docs/_static/*
+Copyright: 2021 Stephen Ruiz Ltd
+License: MIT
+
+Files: tests/data/*.json
+Copyright: 2021 Stephen Ruiz Ltd
+License: MIT
+
+Files: tests/test_*/*.json
+Copyright: 2021 Stephen Ruiz Ltd
+  2022 Calvin Walton
+License: MIT
