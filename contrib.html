@@ -72,7 +72,7 @@ pip install -r requirements-dev.txt
 <h3>Automatic Formatting<a class="headerlink" href="#automatic-formatting" title="Permalink to this heading">¶</a></h3>
 <p>Run <a class="reference external" href="https://github.com/psf/black">black</a> with the following command to
 apply automatic formatting:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>black src tests
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>black .
 </pre></div>
 </div>
 <p>You might also be interested in
@@ -80,18 +80,17 @@ apply automatic formatting:</p>
 </section>
 <section id="running-tests">
 <h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this heading">¶</a></h3>
-<p>Because of the structure of the code in the repository, you must set the
-<code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> environment variable to run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> against the uninstalled
-(development) code. Use the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>src pytest
+<p>Tests ported from the TypeScript library are implemented using the pytest
+framework. In the top level source directory, run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pytest
 </pre></div>
 </div>
 </section>
 <section id="static-type-checking">
 <h3>Static Type-checking<a class="headerlink" href="#static-type-checking" title="Permalink to this heading">¶</a></h3>
 <p>This project includes static type hints. These can be checked using
-<a class="reference external" href="http://mypy-lang.org/">mypy</a>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mypy src tests
+<a class="reference external" href="http://mypy-lang.org/">mypy</a>. In the top level source directory, run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mypy
 </pre></div>
 </div>
 </section>
