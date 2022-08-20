@@ -51,7 +51,7 @@ Automatic Formatting
 Run `black <https://github.com/psf/black>`_ with the following command to
 apply automatic formatting::
 
-    black src tests
+    black .
 
 You might also be interested in
 `integrating black with your editor <https://black.readthedocs.io/en/stable/integrations/editors.html>`_.
@@ -59,19 +59,18 @@ You might also be interested in
 Running Tests
 ^^^^^^^^^^^^^
 
-Because of the structure of the code in the repository, you must set the
-``PYTHONPATH`` environment variable to run ``pytest`` against the uninstalled
-(development) code. Use the following command::
+Tests ported from the TypeScript library are implemented using the pytest
+framework. In the top level source directory, run::
 
-    PYTHONPATH=src pytest
+    pytest
 
 Static Type-checking
 ^^^^^^^^^^^^^^^^^^^^
 
 This project includes static type hints. These can be checked using
-`mypy <http://mypy-lang.org/>`_::
+`mypy <http://mypy-lang.org/>`_. In the top level source directory, run::
 
-    mypy src tests
+    mypy
 
 Building documentation
 ^^^^^^^^^^^^^^^^^^^^^^

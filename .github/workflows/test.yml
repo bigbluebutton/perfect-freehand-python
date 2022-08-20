@@ -27,8 +27,6 @@ jobs:
     - name: Check formatting with black
       run: black --check --target-version py38 .
     - name: Check types with mypy
-      run: mypy src tests
+      run: mypy
     - name: Test with pytest
-      env:
-        PYTHONPATH: src
       run: pytest --junitxml=junit/test-results.xml

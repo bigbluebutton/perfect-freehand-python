@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -11,23 +12,23 @@ import yaml
 
 
 @pytest.fixture(scope="module")
-def shared_datadir(request):
+def shared_datadir(request: pytest.Item) -> Path:
     return Path(request.fspath).parent / "data"
 
 
 @pytest.fixture
-def datadir(request):
+def datadir(request: pytest.Item) -> Path:
     return Path(request.fspath).with_suffix("")
 
 
 @pytest.fixture(scope="module")
-def input_json_all(shared_datadir):
+def input_json_all(shared_datadir: Path) -> Any:
     with open(shared_datadir / "inputs.json", "rb") as f:
         return yaml.safe_load(f)
 
 
 @pytest.fixture
-def input_json(input_json_all, request):
+def input_json(input_json_all: Any, request: Any) -> Any:
     try:
         name = request.param
     except AttributeError:
@@ -41,7 +42,7 @@ def input_json(input_json_all, request):
 
 
 @pytest.fixture
-def output_json(datadir, request):
+def output_json(datadir: Path, request: Any) -> Any:
     try:
         filename = request.param
     except AttributeError:
