@@ -2,45 +2,9 @@
 #
 # SPDX-License-Identifier: MIT
 
-[project]
-name = "perfect-freehand"
-description = "Draw perfect pressure-sensitive freehand lines. (Python port)"
-readme = "README.md"
-requires-python = ">= 3.8"
-license = { file = "LICENSES/MIT.txt" }
-authors = [
-    { name = "Calvin Walton" },
-    { name = "Steve Ruiz" }
-]
-maintainers = [
-    { name = "Calvin Walton", email = "calvin.walton@kepstin.ca" }
-]
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Topic :: Multimedia :: Graphics :: Editors :: Vector-Based"
-]
-dynamic = ["version"]
-
-[project.urls]
-"Homepage" = "https://docs.bigbluebutton.org/perfect-freehand-python/"
-"Bug Tracker" = "https://github.com/bigbluebutton/perfect-freehand-python/issues"
-
 [build-system]
 requires = ["setuptools >= 42"]
 build-backend = "setuptools.build_meta"
-
-[tool.setuptools.dynamic]
-version = { attr = "perfect_freehand.__version__" }
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-"*" = ["py.typed"]
 
 [tool.mypy]
 python_version = "3.8"
