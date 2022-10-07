@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 [build-system]
-requires = ["setuptools >= 42"]
+requires = ["setuptools >= 42", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [tool.mypy]
