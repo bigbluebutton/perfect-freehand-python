@@ -15,3 +15,7 @@ Files: tests/test_*/*.json
 Copyright: 2021 Stephen Ruiz Ltd
   2022 Calvin Walton
 License: MIT
+
+Files: debian/*
+Copyright: 2022 Calvin Walton
+License: MIT
