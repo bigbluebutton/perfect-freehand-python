@@ -1,11 +1,13 @@
-Source: python-perfect-freehand
+Source: python3-perfect-freehand
 Section: web
 Priority: extra
 Maintainer: Calvin Walton <calvin.walton@kepstin.ca>
 Build-Depends: debhelper (>= 10.0.0),
  dh-python,
- python3 (>= 3.8),
- python3-setuptools
+ python3-all (>= 3.8),
+ python3-setuptools,
+ python3-pytest,
+ python3-yaml
 Standards-Version: 3.9.2
 X-Python3-Version: >= 3.8
 
