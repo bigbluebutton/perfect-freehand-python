@@ -1,4 +1,4 @@
-Source: python3-perfect-freehand
+Source: perfect-freehand-python
 Section: web
 Priority: extra
 Maintainer: Calvin Walton <calvin.walton@kepstin.ca>
@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 10.0.0),
 Standards-Version: 3.9.2
 X-Python3-Version: >= 3.8
 
-Package: python-perfect-freehand
+Package: python3-perfect-freehand
 Architecture: all
 Depends: ${misc:Depends}, ${python3:Depends}
 Description: Draw perfect pressure-sensitive freehand lines. (Python port)
