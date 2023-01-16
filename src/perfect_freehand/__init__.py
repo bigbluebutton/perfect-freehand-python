@@ -157,7 +157,7 @@ def get_stroke_points(
         if isinstance(point, Sequence)
         else (point["x"], point["y"], point["pressure"])
         if "pressure" in point
-        else (point["x"], point["y"])
+        else (point["x"], point["y"], 0.5)
         for point in points
     )
 

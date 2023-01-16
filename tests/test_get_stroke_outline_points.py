@@ -30,8 +30,13 @@ def compare_stroke_outline_points(
         "twoEqualPoints",
         "numberPairs",
         "objectPairs",
-        "manyPoints",
         "withDuplicates",
+        "manyPoints",
+        "hey",
+        "he2",
+        "waves",
+        "corners",
+        "scribble",
     ],
     indirect=True,
 )
@@ -75,7 +80,6 @@ def test_many_points(
 ) -> None:
     """Get stroke outline points on a line with many points."""
     points = get_stroke_outline_points(get_stroke_points(input_json))
-    print(json.dumps(points, indent=2))
     compare_stroke_outline_points(points, output_json)
 
 
