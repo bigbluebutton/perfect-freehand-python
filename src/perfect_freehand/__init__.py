@@ -10,7 +10,7 @@ need. It transforms the input points from the device to a polygon representing
 the stroke which can be drawn.
 """
 
-__version__ = "1.0.17"
+__version__ = "1.2.0"
 __all__ = ["get_stroke", "get_stroke_points", "get_stroke_outline_points"]
 
 from math import pi
