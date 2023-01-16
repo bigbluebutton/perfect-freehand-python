@@ -349,6 +349,10 @@ def get_stroke_outline_points(
     tl = pl
     tr = pr
 
+    # Keep track of whether the previous point is a sharp corner
+    # ... so that we don't detect the same corner twice
+    is_prev_point_sharp_corner = False
+
     # Find the outline's left and right points
     #
     # Iterating through the points and populate the right_pts and left_pts arrays,
@@ -408,22 +412,21 @@ def get_stroke_outline_points(
 
         # Add points to left and right
 
-        # Handle the last point
-        if i == len(points) - 1:
-            offset = vec.mul(vec.per(vector), radius)
-            left_pts.append(vec.sub(point, offset))
-            right_pts.append(vec.add(point, offset))
-            continue
-
-        next_vector = points[i + 1]["vector"]
-        next_dpr = vec.dpr(vector, next_vector)
-
         # Handle sharp corners
         #
         # Find the difference (dot product) between the current and next vector.
         # If the next vector is at more than a right angle to the current vector,
         # draw a cap at the current point.
-        if next_dpr < 0:
+        next_vector = (
+            points[i + 1]["vector"] if i < len(points) - 1 else points[i]["vector"]
+        )
+        next_dpr = vec.dpr(vector, next_vector) if i < len(points) - 1 else 1.0
+        prev_dpr = vec.dpr(vector, prev_vector)
+
+        is_point_sharp_corner = prev_dpr < 0 and not is_prev_point_sharp_corner
+        is_next_point_sharp_corner = next_dpr < 0
+
+        if is_point_sharp_corner or is_next_point_sharp_corner:
             # It's a sharp corner. Draw a rounded cap and move on to the next point
             # Considering saving these and drawing them later? So that we can avoid
             # crossing future points.
@@ -441,6 +444,18 @@ def get_stroke_outline_points(
             pl = tl
             pr = tr
 
+            if is_next_point_sharp_corner:
+                is_prev_point_sharp_corner = True
+
+            continue
+
+        is_prev_point_sharp_corner = False
+
+        # Handle the last point
+        if i == len(points) - 1:
+            offset = vec.mul(vec.per(vector), radius)
+            left_pts.append(vec.sub(point, offset))
+            right_pts.append(vec.add(point, offset))
             continue
 
         # Add regular points
