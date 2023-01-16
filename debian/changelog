@@ -1,5 +1,5 @@
-perfect-freehand-python (1.0.17) UNRELEASED; urgency=medium
+perfect-freehand-python (1.2.0) focal; urgency=medium
 
-  * Initial release
+  * Initial release, matches upstream release 1.2.0
 
  -- Calvin Walton <calvin.walton@blindsidenetworks.com>  Fri, 07 Oct 2022 10:17:57 -0400
