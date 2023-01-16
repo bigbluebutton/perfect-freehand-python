@@ -56,39 +56,52 @@ def test_defaults(
     ],
     indirect=True,
 )
-def test_random(input_json: Sequence[Sequence[float]]):
+def test_random(input_json: Sequence[Sequence[float]]) -> None:
     """It creates a stroke with random options."""
     rng = Random("perfect")
 
     for i in range(500):
-        options = {
-            "size": rng.uniform(-100, 100),
-            "thinning": rng.uniform(-1, 1),
-            "streamline": rng.uniform(-1, 1),
-            "smoothing": rng.uniform(-1, 1),
-            "simulate_pressure": rng.choices([False, True], cum_weights=[0.25, 1.0])[0],
-            "last": rng.choices([False, True], cum_weights=[0.75, 1.0])[0],
-            "cap_start": rng.choice([False, True]),
-            "taper_start": rng.choice([rng.uniform(-100, 100), 0.0]),
-            "cap_end": rng.choice([False, True]),
-            "taper_end": rng.choice([rng.uniform(-100, 100), 0]),
-        }
-        result = get_stroke(input_json, **options)
+        size = rng.uniform(-100, 100)
+        thinning = rng.uniform(-1, 1)
+        streamline = rng.uniform(-1, 1)
+        smoothing = rng.uniform(-1, 1)
+        simulate_pressure = rng.choices([False, True], cum_weights=[0.25, 1.0])[0]
+        last = rng.choices([False, True], cum_weights=[0.75, 1.0])[0]
+        cap_start = rng.choice([False, True])
+        taper_start = rng.choice([rng.uniform(-100, 100), 0.0])
+        cap_end = rng.choice([False, True])
+        taper_end = rng.choice([rng.uniform(-100, 100), 0.0])
+        print(
+            f"options: size={size}, thinning={thinning}, streamline={streamline}, smoothing={smoothing}, last={last}, cap_start={cap_start}, taper_start={taper_start}, cap_end={cap_end}, taper_end={taper_end}"
+        )
 
-        print(f"With options: {json.dumps(options)}")
+        result = get_stroke(
+            input_json,
+            size=size,
+            thinning=thinning,
+            streamline=streamline,
+            smoothing=smoothing,
+            simulate_pressure=simulate_pressure,
+            last=last,
+            cap_start=cap_start,
+            taper_start=taper_start,
+            cap_end=cap_end,
+            taper_end=taper_end,
+        )
+
         for point in result:
             assert isfinite(point[0])
             assert isfinite(point[1])
 
 
-def test_no_points(output_json: Sequence[Sequence[float]]):
+def test_no_points(output_json: Sequence[Sequence[float]]) -> None:
     """It gets stroke from a line with no points"""
     stroke = get_stroke([])
     compare_stroke_outline_points(stroke, output_json)
 
 
 @pytest.mark.input_json("twoPoints")
-def test_caps_points(input_json: Sequence[Sequence[float]]):
+def test_caps_points(input_json: Sequence[Sequence[float]]) -> None:
     """It Caps points"""
     stroke = get_stroke(input_json)
     assert len(stroke) > 4
@@ -97,7 +110,7 @@ def test_caps_points(input_json: Sequence[Sequence[float]]):
 @pytest.mark.input_json("onePoint")
 def test_tricky_stroke_with_only_one_point(
     input_json: Sequence[Sequence[float]], output_json: Sequence[Sequence[float]]
-):
+) -> None:
     """It Solves a tricky stroke with only one point."""
     stroke = get_stroke(
         input_json,
