@@ -76,12 +76,12 @@ the taper will be the total length of the stroke.</p></li>
 based on a cubic curve.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>)
-that represent an outline of the drawn stroke.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>)
+that represent an outline of the drawn stroke.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A sequence of points (each represented by a tuple of <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>) that
@@ -107,11 +107,11 @@ dict <code class="docutils literal notranslate"><span class="pre">{&quot;x&quot;
 <li><p><strong>last</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to handle the points as a completed stroke.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A sequence of <a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.StrokePoint</span></code></a> objects.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrokePoint</span></code></a>]</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrokePoint</span></code></a>]</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A sequence of <a class="reference internal" href="#perfect_freehand.types.StrokePoint" title="perfect_freehand.types.StrokePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.StrokePoint</span></code></a> objects.</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -173,19 +173,19 @@ that represent an outline of the drawn stroke.</p>
 ordinary <code class="docutils literal notranslate"><span class="pre">dict</span></code> with the keys described here.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.InputPoint.pressure">
-<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.pressure" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.pressure" title="Permalink to this definition">¶</a></dt>
 <dd><p>The stylus pressure associated with the point. Optional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.InputPoint.x">
-<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.x" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.x" title="Permalink to this definition">¶</a></dt>
 <dd><p>The x coordinate of the point.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.InputPoint.y">
-<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.y" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#perfect_freehand.types.InputPoint.y" title="Permalink to this definition">¶</a></dt>
 <dd><p>The y coordinate of the point.</p>
 </dd></dl>
 
@@ -200,31 +200,31 @@ ordinary <code class="docutils literal notranslate"><span class="pre">dict</span
 points are accessed in the same way as a normal dict.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.distance">
-<span class="sig-name descname"><span class="pre">distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.distance" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.distance" title="Permalink to this definition">¶</a></dt>
 <dd><p>The linear distance from the previous point to this point.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.point">
-<span class="sig-name descname"><span class="pre">point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.point" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code><span class="pre">]</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.point" title="Permalink to this definition">¶</a></dt>
 <dd><p>The x/y position of the point.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.pressure">
-<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.pressure" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.pressure" title="Permalink to this definition">¶</a></dt>
 <dd><p>The stylus pressure associated with the point, or synthesized.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.running_length">
-<span class="sig-name descname"><span class="pre">running_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.running_length" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">running_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.running_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sum of all distances up to this point.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="perfect_freehand.types.StrokePoint.vector">
-<span class="sig-name descname"><span class="pre">vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.vector" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code><span class="pre">]</span></em><a class="headerlink" href="#perfect_freehand.types.StrokePoint.vector" title="Permalink to this definition">¶</a></dt>
 <dd><p>The motion vector from the previous point to this point.</p>
 </dd></dl>
 
