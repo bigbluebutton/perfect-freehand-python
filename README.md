@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 
 # Perfect Freehand Python _(perfect-freehand-python)_
 
-![banner](docs/_static/perfect-freehand-logo.svg)
+![perfect](https://github.com/bigbluebutton/perfect-freehand-python/raw/1.2.0/docs/_static/perfect-freehand-logo.svg)
 
 Draw perfect pressure-sensitive freehand lines. (Python port)
 
