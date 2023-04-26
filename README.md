@@ -20,7 +20,7 @@ other implementations, and to support the original author.
 When published to PyPi, the package name is "perfect-freehand" (since the "python" is redundant).
 The library name when importing into python code is `perfect_freehand`.
 
-* Documentation: https://docs.bigbluebutton.org/perfect-freehand-python/
+* Documentation: https://bigbluebutton.github.io/perfect-freehand-python/
 
 ## License
 
